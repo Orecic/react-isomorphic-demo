@@ -1,69 +1,41 @@
-/**
- * @file pre-commit.js
- * @author Orecic
- *
- * pre commit 检查
- */
-/* tslint-disable */
-
-const exec = require('child_process').exec;
-const log = require('./log');
-
-const fs = require('fs');
-
-let eslintConfig = fs.readFileSync('./tslint.json','utf-8');
-
-const globals = [];
-
-let pass = 0;
-
-const ext = ['tsx'];
-
-log.info('Linting code, please waiting...');
-
-exec('git diff-index --cached --name-status HEAD', (error, stdout, stderr) => {
-    if(stdout.length) {
-        const array = stdout.split('\n');
-        const files = [];
-
-        array.pop();
-        array.forEach(item => {
-            const expr = /[\D]\s*(.+)/.exec(item);
-            if (expr && expr.length > 1) {
-                const path = expr[1];
-                const suffix = path.split('.');
-                if (suffix && suffix.length > 1 && ext.indexOf(suffix[1]) !== -1) {
-                    files.push(path);
-                }
-            }
-        });
-
-        try {
-            const report = cli.executeOnFiles(files);
-
-            report.results.forEach(item => {
-                if (item.errorCount > 0) {
-                    const messages = item.messages;
-
-                    log.info(`${item.filePath}`);
-                    messages.forEach(msg => {
-                        log.error(`line ${msg.line}, col ${msg.column}, message: ${msg.message}, rule: ${msg.ruleId}, type: ${msg.nodeType}`);
-                    });
-
-                    pass = 1;
-                }
-            });
-        } catch (ex) {
-            log.warn(ex);
+var exec = require('child_process').exec;
+var fs = require('fs');
+var errTip = ['还存在很多错误的地方哦！，避免隐患，还是现在改了吧！', '哎呀呀！还有错误哦！'];
+var successTip = ['不错哦！加油！', '赞！', '棒棒哒！'];
+var lint = function(cb) {
+    exec('tslint --project tsconfig.json --format stylish', function(error, stdout, stderr) {// 通过node子进程执行命令
+        if(stdout) {
+            console.log('\x1B[31m%s',errTip[Math.floor(errTip.length*Math.random())]);
+            console.log('\x1B[37m', stdout);//输出eslint错误信息
+            cb(1);
+            return;
         }
+        cb(0);
+    });
+}
 
-        if(pass === 0){
-            log.info(`SUCCESS: Everything is OK!`);
+var taskList = [lint];
+// 执行检查
+var task = function() {
+    if(!taskList.length) {
+        console.log('\x1B[32m%s', successTip[Math.floor(successTip.length*Math.random())]);
+        process.exit(0);
+        return;
+    }
+    var func = taskList.shift();
+    func(function(pass) {
+        if(pass === 1) {
+            process.exit(1);
+            return;
         }
-        process.exit(pass);
-    }
+        task();
+    });
+}
 
-    if (error !== null) {
-        log.error('exec error: ' + error);
-    }
-});
+var startTask = function() {
+    console.log('开始检查代码咯！O(∩_∩)O~\n');
+    task();
+}
+
+// 执行检查
+startTask();
