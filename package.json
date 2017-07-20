@@ -8,10 +8,10 @@
     "build": "next build",
     "start": "node server.js",
     "lint": "tslint --project tsconfig.json --format stylish",
-    "pre-commit": "node pre-commit.js"
+    "pre-commit": "tslint --project tsconfig.json --format stylish"
   },
   "pre-commit": [
-    "pre-commit"
+    "lint"
   ],
   "author": "cmb",
   "license": "ISC",

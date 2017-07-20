@@ -19,7 +19,6 @@ export default class extends React.Component {
     return { json }
   }
 
-
   render() {
     return (
       <div>
