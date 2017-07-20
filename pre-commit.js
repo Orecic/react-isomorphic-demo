@@ -7,27 +7,18 @@
 /* tslint-disable */
 
 const exec = require('child_process').exec;
-const CLIEngine = require('tslint').CLIEngine;
-const linter = require('tslint').linter;
 const log = require('./log');
 
 const fs = require('fs');
 
 let eslintConfig = fs.readFileSync('./tslint.json','utf-8');
 
-eslintConfig = JSON.parse(eslintConfig);
-
+console.log(eslintConfig)
 const globals = [];
-Object.keys(eslintConfig.globals).forEach(key => {
-    globals.push(`${key}:${eslintConfig.globals[key]}`);
-});
-eslintConfig.globals = globals;
-
-const cli = new CLIEngine(eslintConfig);
 
 let pass = 0;
 
-const ext = ['js', 'jsx'];
+const ext = ['tsx'];
 
 log.info('Linting code, please waiting...');
 
