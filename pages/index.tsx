@@ -31,6 +31,7 @@ export default class extends React.Component {
           <PostLink id="hello-wolrd" title="Hello Wolrd!"/>
           <PostLink id="hello-rabbit" title="Hello Rabbit"/>
         </ul>
+        <div>DOMAIN:{BACKEND_URL}</div>
       </div>
     )
   }
