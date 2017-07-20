@@ -16,7 +16,7 @@ let eslintConfig = fs.readFileSync('./tslint.json','utf-8');
 console.log(eslintConfig)
 const globals = [];
 
-let pass = 0;
+let pass = 1;
 
 const ext = ['tsx'];
 
