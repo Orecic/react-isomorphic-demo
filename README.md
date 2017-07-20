@@ -1,4 +1,4 @@
-# react-isomorphic-demo react同构demo
+# react-isomorphic-demo
 
 ## 技术栈
 * react
@@ -7,7 +7,7 @@
 * typescript
 * less
 
-npm run dev
-npm run build
-npm start
-npm run lint
+* npm run dev
+* npm run build
+* npm start
+* npm run lint
