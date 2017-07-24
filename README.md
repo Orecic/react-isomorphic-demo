@@ -7,11 +7,11 @@
 * typescript
 * less
 
-## start..
-安装依赖
+## 安装依赖
 * npm i
-编译ts
+## 编译ts
 * tsc
+## start..
 * npm start
 * npm run dev
 * npm run build
