@@ -24,8 +24,8 @@ export default class extends React.Component {
       <div>
         <style dangerouslySetInnerHTML={{ __html: stylesheet }} />
         <ul className="nav">
-          <li><Link href='/' ><a>index</a></Link></li>
-          <li><Link href='/hello'><a>hello</a></Link></li>
+          <li><Link href='/' prefetch><a>index</a></Link></li>
+          <li><Link href='/hello' prefetch><a>hello</a></Link></li>
          </ul>
         <ul>
           <PostLink id="hello-wolrd" title="Hello Wolrd!"/>
