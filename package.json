@@ -16,7 +16,6 @@
   "author": "cmb",
   "license": "ISC",
   "dependencies": {
-    "@types/react-redux": "^4.4.46",
     "express": "^4.15.3",
     "immutable": "^3.8.1",
     "isomorphic-unfetch": "^2.0.0",
@@ -30,7 +29,9 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "@types/node": "^8.0.15",
     "@types/react": "^15.0.38",
+    "@types/react-redux": "^4.4.46",
     "autoprefixer": "^7.1.2",
     "babel-loader": "^7.1.1",
     "babel-plugin-module-resolver": "^2.7.1",

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as stylesheet './Hello.less';
+import * as stylesheet from './Hello.less';
 
 export interface Props {
   name: string;

@@ -1,7 +1,7 @@
 let exec = require('child_process').exec;
 let fs = require('fs');
-let errTip = ['还存在很多错误的地方哦！，避免隐患，还是现在改了吧！', '哎呀呀！还有错误哦！'];
-let successTip = ['不错哦！加油！', '赞！', '棒棒哒！'];
+let errTip = ['something went wrong..', 'Error..'];
+let successTip = ['么么哒！', '赞！', '棒棒哒！'];
 let lint = function(cb) {
     exec('tslint --project tsconfig.json --format stylish', function(error, stdout, stderr) {
         if(stdout) {
@@ -33,7 +33,7 @@ let task = function() {
 }
 
 let startTask = function() {
-    console.log('开始检查代码咯！O(∩_∩)O~\n');
+    console.log('starting！！！O(∩_∩)O~\n');
     task();
 }
 
