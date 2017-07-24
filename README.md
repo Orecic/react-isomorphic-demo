@@ -8,8 +8,10 @@
 * less
 
 ## start..
-* npm i //安装依赖
-* tsc //编译ts
+安装依赖
+* npm i
+编译ts
+* tsc
 * npm start
 * npm run dev
 * npm run build
